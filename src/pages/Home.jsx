@@ -9,12 +9,18 @@ const Home = () => {
     async function getTrendMovies() {
       try {
         const { results } = await API.getTrendMovies();
+        const trendingMovies = results.map(({ id, title }) => {
+          return { id, title };
+        });
+
         if (!results.length) {
           return;
         }
-        setMovies([...results]);
+        setMovies([...trendingMovies]);
       } catch (error) {
         console.log(error.message);
+      } finally {
+        // setStatus('resolved');
       }
     }
     getTrendMovies();
