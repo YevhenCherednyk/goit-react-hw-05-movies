@@ -1,5 +1,6 @@
 import { Box } from 'components/Layout/Box';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MoviesList = ({ movies }) => {
   return (
@@ -13,6 +14,15 @@ const MoviesList = ({ movies }) => {
       })}
     </Box>
   );
+};
+
+MoviesList.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string,
+    })
+  ).isRequired,
 };
 
 export default MoviesList;
