@@ -17,17 +17,33 @@ async function searchMovies(query) {
   return response.data;
 }
 
-async function moviesDetails(id) {
+async function getMovieDetails(id) {
   const url = `/movie/${id}?api_key=${API_KEY}`;
-  const response = await axios.get(url);
+  const { data } = await axios.get(url);
 
-  return response.data;
+  const {
+    poster_path,
+    original_title,
+    vote_average,
+    overview,
+    genres,
+    release_date,
+  } = data;
+
+  return {
+    poster_path,
+    original_title,
+    vote_average,
+    overview,
+    genres,
+    release_date,
+  };
 }
 
 const api = {
   getTrendMovies,
   searchMovies,
-  moviesDetails,
+  getMovieDetails,
 };
 
 export default api;
