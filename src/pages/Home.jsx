@@ -6,14 +6,10 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    async function getTrendMovies() {
+    async function fetchTrendMovies() {
       try {
-        const { results } = await API.getTrendMovies();
-        const trendingMovies = results.map(({ id, title }) => {
-          return { id, title };
-        });
-
-        if (!results.length) {
+        const trendingMovies = await API.getTrendMovies();
+        if (!trendingMovies) {
           return;
         }
         setMovies([...trendingMovies]);
@@ -23,7 +19,7 @@ const Home = () => {
         // setStatus('resolved');
       }
     }
-    getTrendMovies();
+    fetchTrendMovies();
   }, []);
 
   return (

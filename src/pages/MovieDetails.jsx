@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, NavLink, Outlet } from 'react-router-dom';
 import API from 'services/movieDatabaseAPI';
 import picturePathPlace from 'helpers/placeholder';
 import genresList from 'helpers/genresList';
@@ -63,6 +63,22 @@ const MovieDetails = () => {
           <h4>Genres</h4>
           <p>{genresList(genres)}</p>
         </div>
+      </div>
+      <div>
+        <p>Additional information</p>
+        <ul>
+          <li>
+            <NavLink to="cast" state={{ from: backLinkHref }}>
+              Cast
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="reviews" state={{ from: backLinkHref }}>
+              Reviews
+            </NavLink>
+          </li>
+        </ul>
+        <Outlet />
       </div>
     </>
   );

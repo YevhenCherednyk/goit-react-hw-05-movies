@@ -17,12 +17,9 @@ const Movies = () => {
 
     async function getSearhMovie() {
       try {
-        const { results } = await API.searchMovies(query);
-        const trendingMovies = results.map(({ id, title }) => {
-          return { id, title };
-        });
+        const trendingMovies = await API.searchMovies(query);
 
-        if (!results.length) {
+        if (!trendingMovies.length) {
           return;
         }
 

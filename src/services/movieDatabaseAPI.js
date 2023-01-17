@@ -6,15 +6,23 @@ const API_KEY = '19011014b9b53c4fd496d37c25f2b619';
 
 async function getTrendMovies(page = 1) {
   const url = `trending/movie/day?api_key=${API_KEY}&page=${page}`;
-  const response = await axios.get(url);
-  return response.data;
+  const { data } = await axios.get(url);
+
+  return data.results.map(({ title, id }) => ({
+    title,
+    id,
+  }));
 }
 
 async function searchMovies(query) {
   const url = `search/movie?api_key=${API_KEY}&language=en-US&query==${query}`;
-  const response = await axios.get(url);
+  const { data } = await axios.get(url);
+  console.log(data);
 
-  return response.data;
+  return data.results.map(({ title, id }) => ({
+    title,
+    id,
+  }));
 }
 
 async function getMovieDetails(id) {
@@ -40,10 +48,34 @@ async function getMovieDetails(id) {
   };
 }
 
+async function getMovieCredits(id) {
+  const url = `/movie/${id}/credits?api_key=${API_KEY}`;
+  const { data } = await axios.get(url);
+
+  return data.cast.map(({ profile_path, name, character }) => ({
+    profile_path,
+    name,
+    character,
+  }));
+}
+
+async function getMovieReviews(id) {
+  const url = `/movie/${id}/reviews?api_key=${API_KEY}`;
+  const { data } = await axios.get(url);
+
+  return data.results.map(({ author, content, id }) => ({
+    author,
+    content,
+    id,
+  }));
+}
+
 const api = {
   getTrendMovies,
   searchMovies,
   getMovieDetails,
+  getMovieCredits,
+  getMovieReviews,
 };
 
 export default api;
