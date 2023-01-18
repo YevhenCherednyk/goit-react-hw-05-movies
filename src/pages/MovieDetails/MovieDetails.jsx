@@ -4,6 +4,7 @@ import API from 'services/movieDatabaseAPI';
 import picturePathPlace from 'helpers/placeholder';
 import genresList from 'helpers/genresList';
 import GoBackBtn from 'components/GoBackBtn';
+import css from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -47,26 +48,28 @@ const MovieDetails = () => {
   const backLinkHref = location.state?.from ?? '/';
 
   return (
-    <>
+    <section className={css.section}>
       <GoBackBtn to={backLinkHref}>Go back</GoBackBtn>
-      <div>
-        <div>
-          <img src={picturePathPlace(poster_path)} alt={original_title} />
-        </div>
-        <div>
+      <div className={css.movieDetails}>
+        <img
+          className={css.movieDetailsPoster}
+          src={picturePathPlace(poster_path)}
+          alt={original_title}
+        />
+        <div className={css.movieDetailsDescription}>
           <h2>
             {original_title} ({releaseYear})
           </h2>
           <p>User Score: {userScore} %</p>
           <h3>Overview</h3>
           <p>{overview}</p>
-          <h4>Genres</h4>
+          <h3>Genres</h3>
           <p>{genresList(genres)}</p>
         </div>
       </div>
-      <div>
-        <p>Additional information</p>
-        <ul>
+      <div className={css.movieDetailsInform}>
+        <h3 className={css.movieDetailsInformTitle}>Additional information</h3>
+        <ul className={css.movieDetailsInformList}>
           <li>
             <NavLink to="cast" state={{ from: backLinkHref }}>
               Cast
@@ -80,7 +83,7 @@ const MovieDetails = () => {
         </ul>
         <Outlet />
       </div>
-    </>
+    </section>
   );
 };
 

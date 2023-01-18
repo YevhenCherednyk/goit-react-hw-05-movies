@@ -1,5 +1,5 @@
-import { Box } from 'components/Layout/Box';
 import { NavItem } from './AppBar.styled';
+import css from './AppBar.module.css';
 
 const navItems = [
   { href: '/', text: 'Home' },
@@ -8,8 +8,8 @@ const navItems = [
 
 const AppBar = () => {
   return (
-    <Box as="header" p={4}>
-      <Box as="nav" display="flex" gridGap={3}>
+    <header className={css.header}>
+      <nav className={css.nav}>
         {navItems.map(({ href, text }) => {
           return (
             <NavItem to={href} key={href}>
@@ -17,8 +17,8 @@ const AppBar = () => {
             </NavItem>
           );
         })}
-      </Box>
-    </Box>
+      </nav>
+    </header>
   );
 };
 

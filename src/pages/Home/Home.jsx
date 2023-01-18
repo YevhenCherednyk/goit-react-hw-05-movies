@@ -1,6 +1,7 @@
 import MoviesList from 'components/MoviesList';
 import { useState, useEffect } from 'react';
 import API from 'services/movieDatabaseAPI';
+import css from './Home.module.css';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -23,10 +24,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <main className={css.container}>
       <h1>Trending today</h1>
       {movies.length > 0 && <MoviesList movies={movies} />}
-    </div>
+    </main>
   );
 };
 

@@ -17,7 +17,6 @@ async function getTrendMovies(page = 1) {
 async function searchMovies(query) {
   const url = `search/movie?api_key=${API_KEY}&language=en-US&query==${query}`;
   const { data } = await axios.get(url);
-  console.log(data);
 
   return data.results.map(({ title, id }) => ({
     title,

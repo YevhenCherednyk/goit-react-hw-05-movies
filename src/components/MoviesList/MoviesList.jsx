@@ -1,22 +1,22 @@
-import { Box } from 'components/Layout/Box';
 import { NavLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import css from './MoviesList.module.css';
 
 const MoviesList = ({ movies }) => {
   const location = useLocation();
 
   return (
-    <Box as="ul">
+    <ul className={css.list}>
       {movies.map(({ id, title }) => {
         return (
-          <Box as="li" key={id}>
+          <li className={css.item} key={id}>
             <NavLink to={`/movies/${id}`} state={{ from: location }}>
               {title}
             </NavLink>
-          </Box>
+          </li>
         );
       })}
-    </Box>
+    </ul>
   );
 };
 
