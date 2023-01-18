@@ -3,7 +3,7 @@ import css from './AppBar.module.css';
 
 const navItems = [
   { href: '/', text: 'Home' },
-  { href: '/movies', text: 'Movies' },
+  { href: 'movies', text: 'Movies' },
 ];
 
 const AppBar = () => {
