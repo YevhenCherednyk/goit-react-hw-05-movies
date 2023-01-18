@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, useLocation, NavLink, Outlet } from 'react-router-dom';
 import API from 'services/movieDatabaseAPI';
 import picturePathPlace from 'helpers/placeholder';
@@ -23,7 +23,7 @@ const MovieDetails = () => {
       } catch (error) {
         console.log(error.message);
       } finally {
-        // setStatus('resolved');
+        // setIsLoading(false);
       }
     }
     fetchMovieDetails();
@@ -81,7 +81,9 @@ const MovieDetails = () => {
             </NavLink>
           </li>
         </ul>
-        <Outlet />
+        <Suspense fallback={<div>Loading ...</div>}>
+          <Outlet />
+        </Suspense>
       </div>
     </section>
   );

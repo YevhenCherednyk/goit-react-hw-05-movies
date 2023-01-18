@@ -27,7 +27,7 @@ const Movies = () => {
       } catch (error) {
         console.log(error.message);
       } finally {
-        // setStatus('resolved');
+        // setIsLoading(false);
       }
     }
     getSearhMovie();

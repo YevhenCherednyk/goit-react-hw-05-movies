@@ -17,7 +17,7 @@ const Home = () => {
       } catch (error) {
         console.log(error.message);
       } finally {
-        // setStatus('resolved');
+        // setIsLoading(false);
       }
     }
     fetchTrendMovies();
